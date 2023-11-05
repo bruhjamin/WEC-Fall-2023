@@ -1,0 +1,33 @@
+{
+    "gear": [
+        {
+            "gearId": 1,
+            "gearName": "Jacket",
+            "gearExceptions": [
+                "Armor"
+            ]
+        },
+        {
+            "gearId": 2,
+            "gearName": "Polearm",
+            "gearExceptions": [
+                "2x4"
+            ]
+        },
+        {
+            "gearId": 3,
+            "gearName": "Sword",
+            "gearExceptions": [
+                "Polearm"
+            ]
+        },
+        {
+            "gearId": 4,
+            "gearName": "Sleeping Bag",
+            "gearExceptions": [
+                "Tarp",
+                "Tent"
+            ]
+        }
+    ]
+}
