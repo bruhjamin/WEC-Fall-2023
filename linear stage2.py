@@ -60,7 +60,7 @@ problem += objective
 # start timer
 start_time = timeit.default_timer()
 
-# Solve the MILP problem
+# Solve the ILP problem
 problem.solve()
 
 # Print the results

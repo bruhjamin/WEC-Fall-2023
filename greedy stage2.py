@@ -8,12 +8,12 @@ combinations = []
 with open('gear.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
-        items.append([row[0], row[1], row[2], row[3]])
+        items.append([row[0], float(row[1]), int(row[2]), int(row[3])])
 
 with open('combinations.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
-        combinations.append([row[0], row[1], row[2], row[3], row[4]])
+        combinations.append([row[0], row[1], row[2], int(row[3]), int(row[4])])
 
 # Set the weight limit for gear
 weight_limit = 10  # adjust this value
@@ -23,13 +23,13 @@ def calculate_combination_bonus(selected_gear):
     total_survival = 0
     total_combat = 0
     for gear in selected_gear:
-        total_survival += int(gear[2])
-        total_combat += int(gear[3])
+        total_survival += gear[2]
+        total_combat += gear[3]
     for combo in combinations:
         if combo[0] in selected_gear and combo[1] in selected_gear:
-            total_survival += int(combo[3])
-            total_combat += int(combo[4])
-    return [total_survival, total_combat, (total_survival + total_combat) / float(gear[1])]
+            total_survival += combo[3]
+            total_combat += combo[4]
+    return [total_survival, total_combat, (total_survival + total_combat) / gear[1]]
 
 # Greedy algorithm to select gear
 def select_items():
@@ -40,7 +40,7 @@ def select_items():
         best_combination_bonus = 0
 
         for gear in items:
-            if gear not in selected_gear and current_weight + float(gear[1]) <= weight_limit:
+            if gear not in selected_gear and current_weight + gear[1] <= weight_limit:
                 selected_gear.append(gear)
                 bonus = calculate_combination_bonus(selected_gear)
                 if bonus[2] > best_combination_bonus:
@@ -50,7 +50,7 @@ def select_items():
 
         if best_gear is not None:
             selected_gear.append(best_gear)
-            current_weight += float(best_gear[1])
+            current_weight += best_gear[1]
         else:
             break
 
